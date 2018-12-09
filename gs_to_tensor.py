@@ -149,8 +149,8 @@ class GameConverter:
 
         if verbose:
             print("FINISHED. renaming %s to %s" % (tmp_file, hdf5_file))
-            print "With %s removed games" % REMOVED_GAMES
-            print "And a total of %s states" % NB_ACTION
+            print ("With %s removed games" % REMOVED_GAMES)
+            print("And a total of %s states" % NB_ACTION)
 
         # processing complete; rename tmp_file to hdf5_file
         h5f.close()
