@@ -98,7 +98,7 @@ def R_learning(coups, parties, id_gagnes, player, name, ratio, nb_partie, epoch)
     return filepath
 
 
-def play_learn(player, opponent, nb_partie, epoch, policy, name, size=19, verbose=False):
+def play_learn(player, opponent, nb_partie, epoch,  name, size=19, verbose=False):
     date = datetime.datetime.now()
     preprocessor = player.convertor
 
@@ -180,12 +180,10 @@ policy_e2.model.compile(loss='categorical_crossentropy', optimizer=optimizer)
 opponent_e = pl.Player_pl(policy_e2, conv_with_lib_after)
 
 print("creation terminee")
-print
 
 print("Test de performance joueur aleatoire contre lui meme ")
 play_game(player_rd, opponent_rd, 2, 19, False)
 
-print
 
 # parametre d'apprentissage
 
@@ -198,20 +196,19 @@ size = 19
 policy = policy_m
 
 print(" SL cree par Mathias")
-print
-print("entrainement contre joueur random")
+#print("entrainement contre joueur random")
 name = "M_random"
 
 # play_learn(player_m,opponent_rd,nb_partie,epoch,policy,name,size,verbose)
 
 # entrainement contre lui meme
-print("entrainement contre lui-meme")
+#print("entrainement contre lui-meme")
 name = "M_M"
 
 # play_learn(player_m,opponent_m,nb_partie,epoch,policy,name,size,verbose)
 
 # entrainement contre le SL d'Evan
-print("entrainement contre le SL d'Evan")
+#print("entrainement contre le SL d'Evan")
 name = "M_E"
 
 # play_learn(player_m,opponent_e,nb_partie,epoch,policy,name,size,verbose)
@@ -223,13 +220,13 @@ policy = policy_e
 
 print(" SL cree par Evan")
 print
-print("entrainement contre joueur random")
+#print("entrainement contre joueur random")
 name = "E_random"
 
 # play_learn(player_e,opponent_rd,nb_partie,epoch,policy_e,name,size,verbose)
 
 # entrainement contre lui meme
-print("entrainement contre lui-meme")
+#print("entrainement contre lui-meme")
 name = "E_E"
 # play_learn(player_e,opponent_e,nb_partie,epoch,policy,name,size,verbose)
 
@@ -237,4 +234,4 @@ name = "E_E"
 print("entrainement contre le SL de Mathias")
 name = "E_M"
 
-play_learn(player_e, opponent_m, nb_partie, epoch, policy, name, size, verbose)
+play_learn(player_e, opponent_m, nb_partie, epoch,  name, size, verbose)
