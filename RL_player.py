@@ -108,11 +108,11 @@ class Player_human(object): #joueur humain
         # list with sensible moves
         coup=(-1,-1)
         while state.is_legal(coup)!=True:
-            coup = eval(raw_input("Entrez les coordonnees:"))
+            coup = eval(input("Entrez les coordonnees:"))
             if coup ==0:
                 return go.PASS_MOVE 
             if state.is_legal(coup)!=True:
-                print "coup illegal"
+                print("coup illegal")
         return coup
         
 

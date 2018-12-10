@@ -87,10 +87,10 @@ def R_learning(coups, parties, id_gagnes, player, name, ratio, nb_partie, epoch)
         # print("loss =",loss)
         # player.policy.model.train_on_batch(np.concatenate(parties[i], axis=0),coups[i])
     date = datetime.datetime.now()
-    filepath = ("%s/%s_R=%2f_N=%d_H=%s_%s_%sh%s.hdf5" % (
-        "RL", name, ratio, nb_partie, date.day, date.month, date.hour, date.minute))
-    tfilepath = ("%s/%s_R=%2f_N=%d_H=%s_%s_%sh%s.txt" % (
-        "RL", name, ratio, nb_partie, date.day, date.month, date.hour, date.minute))
+    filepath = "model/%s/%s_R=%2f_N=%d_H=%s_%s_%sh%s.hdf5" % (
+        "RL", name, ratio, nb_partie, date.day, date.month, date.hour, date.minute)
+    tfilepath = "model/%s/%s_R=%2f_N=%d_H=%s_%s_%sh%s.txt" % (
+        "RL", name, ratio, nb_partie, date.day, date.month, date.hour, date.minute)
     player.policy.model.save(filepath)
     print('%d coups sur  %d parties appris' % (nb_coup_total, len(parties)))
     Tools.text_file(tfilepath, player.policy.model.model, nb_coup_total, epoch, date)
@@ -189,8 +189,8 @@ print
 
 # parametre d'apprentissage
 
-nb_partie = 100
-epoch = 10
+nb_partie = 1
+epoch = 1
 verbose = False
 size = 19
 

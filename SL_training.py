@@ -125,7 +125,7 @@ def run_training(cmd_line_args=None):
         else:
             model = CNN.create_CNN(args.board_size,args.layers_nb,features_nb)
             if args.verbose:
-                print ("MODEL CREATED")
+                print("MODEL CREATED")
                 model.summary()
 
 
