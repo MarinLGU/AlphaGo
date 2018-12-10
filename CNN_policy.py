@@ -8,9 +8,8 @@ from keras.layers.core import Activation, Flatten
 from Tools import Biais
 from keras.models import load_model
 
-class CNN :
 
-
+class CNN:
     """model creation"""
     """     Mastering GoG quotes
     The SL policy network p(w)(ajs) alternates between convolutional layers with weights w and rectifier non-linearities.
@@ -26,7 +25,6 @@ class CNN :
     used k = 192 filters; Figure 2,b and Extended Data Table 3 additionally show the results of training
     with k = 128; 256; 384 filters."""
 
-
     def __init__(self, layers=None, name=None):
         self.layers = []  # Stack of layers.
         self.model = None  # Internal Model instance.
@@ -40,7 +38,6 @@ class CNN :
         self._outbound_nodes = []
         self.built = False
 
-
         self.name = name
 
         # Add to the model any layers passed to the constructor.
@@ -48,41 +45,37 @@ class CNN :
             for layer in layers:
                 self.add(layer)
 
-
     @staticmethod
-    def create_CNN(size, layers, features_nb) :
-
+    def create_CNN(size, layers, features_nb):
 
         CNN = Sequential()
-        CNN.add (Conv2D(
-        filters = 128,
-        kernel_size = (5,5),
-        input_shape = (size,size,features_nb),
-        padding='same',
-        kernel_initializer='uniform',
-        activation = 'relu'))
+        CNN.add(Conv2D(
+            filters=128,
+            kernel_size=(5, 5),
+            input_shape=(size, size, features_nb),
+            padding='same',
+            kernel_initializer='uniform',
+            activation='relu'))
         for i in range(layers):
-            CNN.add (Conv2D(filters = 128,kernel_size = (3,3),
-            activation = 'relu',padding='same',
-            kernel_initializer='uniform'))
+            CNN.add(Conv2D(filters=128, kernel_size=(3, 3),
+                           activation='relu', padding='same',
+                           kernel_initializer='uniform'))
 
-        CNN.add (Conv2D(
-        filters = 1,
-        kernel_size = (1,1),
-        padding='same',
-        kernel_initializer='uniform'))
+        CNN.add(Conv2D(
+            filters=1,
+            kernel_size=(1, 1),
+            padding='same',
+            kernel_initializer='uniform'))
 
         CNN.add(Flatten())
         CNN.add(Biais())
         CNN.add(Activation('softmax'))
-        
+
         return CNN
 
-    def load(self,filename):
-        CNN=load_model(filename, custom_objects={'Biais': Biais})
-        self.model=CNN
+    def load(self, filename):
+        CNN = load_model(filename, custom_objects={'Biais': Biais})
+        self.model = CNN
 
-
-
-    def pred(self,tensor):
+    def pred(self, tensor):
         return self.model.predict(tensor)
